@@ -1,5 +1,6 @@
 
 import './App.css'
+import XCountries from './Components/XCountries'
 
 function App() {
   
@@ -7,6 +8,7 @@ function App() {
   return (
     <>
       <div>
+        <XCountries />
         
       </div>
      
