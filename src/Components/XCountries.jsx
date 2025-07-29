@@ -33,7 +33,7 @@ const XCountries = () => {
      const data = await response.json();
       setCountries(data);
   } catch (err) {
-      console.log("Error fetching data:", err);
+      console.error("Error fetching data:", err);
      
     }
   };
