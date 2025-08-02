@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import SearchBar from "./SearchBar"; // import your new SearchBar component
 
 // Reusable Card component
 const Card = ({ name, flag }) => {
@@ -15,7 +16,7 @@ const Card = ({ name, flag }) => {
       width: "200px",
       padding: "10px"
     }}>
-      <img src={flag} alt={`Flag of ${name}`} width="100" height="auto" />
+      <img src={flag} alt={`Flag of ${name}`} width="100" />
       <h2>{name}</h2>
     </div>
   );
@@ -25,7 +26,6 @@ const XCountries = () => {
   const [countries, setCountries] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Fetch countries once on mount
   const fetchCountries = async () => {
     try {
       const response = await fetch("https://xcountries-backend.azurewebsites.net/all");
@@ -40,7 +40,6 @@ const XCountries = () => {
     fetchCountries();
   }, []);
 
-  // Filtered list based on search term
   const filteredCountries = countries.filter((country) =>
     country.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -49,21 +48,8 @@ const XCountries = () => {
     <div>
       <h1 style={{ textAlign: "center" }}>XCountries</h1>
 
-      <div style={{ display: "flex", justifyContent: "center", marginBottom: "20px" }}>
-        <input
-          type="text"
-          placeholder="Search countries"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            padding: "10px",
-            fontSize: "16px",
-            border: "1px solid #ccc",
-            borderRadius: "6px",
-            width: "300px"
-          }}
-        />
-      </div>
+      {/* Reusable SearchBar */}
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
       <div style={{
         display: "flex",
