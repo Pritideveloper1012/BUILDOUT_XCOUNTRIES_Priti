@@ -28,7 +28,7 @@ const XCountries = () => {
 
   const fetchCountries = async () => {
     try {
-      const response = await fetch("https://xcountries-backend.azurewebsites.net/all");
+      const response = await fetch("https://countries-search-data-prod-812920491762.asia-south1.run.app/countries");
       const data = await response.json();
       setCountries(data);
     } catch (err) {
@@ -42,8 +42,8 @@ const XCountries = () => {
 
   // Filter countries based on search
   const filteredCountries = countries.filter((country) =>
-    country.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  country.name?.common?.toLowerCase().includes(searchTerm.toLowerCase())
+);
 
   return (
     <>
@@ -56,13 +56,14 @@ const XCountries = () => {
           flexWrap: "wrap",
         }}
       >
-        {filteredCountries.map((country, index) => (
-          <Card
-            key={`${country.abbr}-${country.name}-${index}`}
-            name={country.name}
-            flag={country.flag}
-          />
-        ))}
+       {filteredCountries.map((country, index) => (
+  <Card
+    key={`${country.cca3}-${index}`}
+    name={country.name?.common}
+    flag={country.flags?.png}
+  />
+))}
+
       </div>
     </>
   );
