@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./Countries.css"
 
 
 const Countries = () => {
@@ -29,7 +30,7 @@ const Countries = () => {
 
       <div className="country-container">
         {filteredCountries.map((country) => (
-    <div key={country.name.common}>
+    <div  className="country-card" key={country.name.common}>
     <img src={country.flags.png} alt={country.name.common} />
     <p>{country.name.common}</p>
   </div>
