@@ -28,7 +28,7 @@ const XCountries = () => {
 
   const fetchCountries = async () => {
     try {
-      const response = await fetch("https://xcountries-backend.azurewebsites.net/all");
+      const response = await fetch(" https://countries-search-data-prod-812920491762.asia-south1.run.app/countries");
       const data = await response.json();
       setCountries(data);
     } catch (err) {
