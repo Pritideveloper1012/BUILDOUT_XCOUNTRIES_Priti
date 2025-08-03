@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Countries = () => {
   const [countries, setCountries] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState([]);
 
   useEffect(() => {
     const fetchCountries = async () => {
       try {
-        const response = await fetch(
+        const response = await axios.get(
           "https://countries-search-data-prod-812920491762.asia-south1.run.app/countries"
         );
-        const data = await response.json();
-        console.log("Fetched data:", data); // ✅ Debug log
-        setCountries(data);
+        setCountries(response.data);
       } catch (error) {
         console.error("Error fetching countries:", error);
       }
