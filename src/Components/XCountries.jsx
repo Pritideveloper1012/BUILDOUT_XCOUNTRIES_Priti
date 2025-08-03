@@ -10,6 +10,8 @@ const Countries = () => {
   const fetchCountries = async () => {
     const res = await fetch(" https://countries-search-data-prod-812920491762.asia-south1.run.app/countries");
     const data = await res.json();
+   console.log("Fetched countries:", data); 
+    
     setCountries(data);
   };
   fetchCountries();
