@@ -3,7 +3,8 @@ import axios from "axios";
 
 const Countries = () => {
   const [countries, setCountries] = useState([]);
-  const [searchTerm, setSearchTerm] = useState([]);
+ const [searchTerm, setSearchTerm] = useState("");
+
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -21,8 +22,10 @@ const Countries = () => {
   }, []);
 
   const filteredCountries = countries.filter((country) =>
-    country?.common?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  (country.common || "").toLowerCase().includes(searchTerm.toLowerCase())
+);
+  console.log(countries.map((c) => c.name)); // See if any name is undefined or not a string
+
 
   return (
     <div>
