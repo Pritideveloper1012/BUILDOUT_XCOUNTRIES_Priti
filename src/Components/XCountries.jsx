@@ -8,7 +8,7 @@ const Countries = () => {
 
   useEffect(() => {
   const fetchCountries = async () => {
-    const res = await fetch("https://restcountries.com/v3.1/all?fields=name,flags");
+    const res = await fetch(" https://countries-search-data-prod-812920491762.asia-south1.run.app/countries");
     const data = await res.json();
     setCountries(data);
   };
@@ -16,7 +16,7 @@ const Countries = () => {
 }, []);
 
   const filteredCountries = countries.filter((country) =>
-  country.name.common.toLowerCase().includes(searchText.toLowerCase())
+  country.common.toLowerCase().includes(searchText.toLowerCase())
 );
 
   return (
@@ -29,12 +29,15 @@ const Countries = () => {
       />
 
       <div className="country-container">
-        {filteredCountries.map((country) => (
-    <div  className="country-card" key={country.name.common}>
-    <img src={country.flags.png} alt={country.name.common} />
-    <p>{country.name.common}</p>
-  </div>
-))}
+           {filteredCountries.map((country) =>
+          country.common && country.png ? (
+            <div key={country.common} className="countryCard">
+              <img src={country.png} alt={country.common} />
+              <p>{country.common}</p>
+            </div>
+          ) : null
+        )}
+
       </div>
     </div>
   );
